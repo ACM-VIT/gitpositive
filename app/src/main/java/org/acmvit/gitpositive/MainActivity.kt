@@ -2,6 +2,7 @@ package org.acmvit.gitpositive
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import com.bumptech.glide.Glide
 import org.acmvit.gitpositive.databinding.ActivityMainBinding
 import retrofit2.Call
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val Binding = ActivityMainBinding.inflate(layoutInflater)
         val view = Binding.root
         setContentView(view)
-        getUserData(binding = Binding );
+        getUserData(binding = Binding);
     }
 
         fun getUserData(binding:ActivityMainBinding) {
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 .build()
                 .create(ApiInterface::class.java)
             val username= intent.getStringExtra("Username").toString()
-
+            binding.appName.text = Html.fromHtml(getColorStr("Git", "#6CFF54") + getColorStr("Positive", "#FFFFFF"))
             val retrofitData = retrofitBuilder.getData(username)
             retrofitData.enqueue(object : Callback<UserData?> {
                 override fun onResponse(call: Call<UserData?>, response: Response<UserData?>) {
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                     binding.RepoCount.append(responseBody?.public_repos.toString())
                     binding.bio.text=responseBody?.bio
                     binding.username.text=responseBody?.name
+                    binding.userName.text = responseBody?.login
                     Glide.with(this@MainActivity)
                         .load(responseBody?.avatar_url)
                         .error(R.drawable.error1)

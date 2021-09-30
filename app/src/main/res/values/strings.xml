@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">GitPositive</string>
-    <string name="username">To Begin with, enter your username</string>
-    <string name="about">A better Github profile</string>
-    <string name="github_username">Github Username</string>
+    <string name="username">To begin with, enter your username</string>
+    <string name="about">A better GitHub profile</string>
+    <string name="github_username">GitHub Username</string>
     <string name="gitpositive">GitPositive</string>
     <string name="master_yoda">Master Yoda</string>
     <string name="user_name">User Name</string>
