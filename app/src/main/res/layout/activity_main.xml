@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GitPositive"
+        android:text="@string/gitpositive"
         android:textSize="18sp"
         android:textColor="#6CFF54"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,18 +53,19 @@
 
                 <ImageView
 
-                    android:id="@+id/imageView1"
+                    android:id="@+id/avatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/dummy_img" />
+                    android:scaleType="centerCrop" />
+
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Master Yoda"
+                android:text="@string/master_yoda"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -72,17 +73,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User Name"
+                android:text="@string/user_name"
                 android:textColor="#66FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/bio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="Android Platform and *nix enthusiast, studying at Vellore Institute of Technology, Vellore. Founder at @StyxProject, @CartelProject @ArcadiaLinux."
+                android:text="@string/bio"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -97,7 +99,7 @@
 
             <Button
                 android:textAllCaps="false"
-                android:id="@+id/button2"
+                android:id="@+id/follower_count"
                 android:layout_width="110dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
@@ -106,30 +108,30 @@
                 android:layout_margin="5dp"
                 android:theme="@style/Button.Grey"
                 android:background="@drawable/border"
-                android:text="184 \n Followers" />
+                android:text="@string/followers_n" />
 
             <Button
                 android:textAllCaps="false"
                 android:background="@drawable/border"
                 android:gravity="center"
-                android:id="@+id/button3"
+                android:id="@+id/RepoCount"
                 android:layout_margin="5dp"
                 android:layout_width="110dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:padding="1dp"
-                android:text="161 \n Repositories" />
+                android:text="@string/repositories_n" />
 
             <Button
                 android:textAllCaps="false"
                 android:layout_margin="5dp"
-                android:id="@+id/button4"
+                android:id="@+id/Following_Count"
                 android:padding="5dp"
                 android:background="@drawable/border"
                 android:layout_width="110dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
-                android:text="75 \n Following" />
+                android:text="@string/following_n" />
 
         </LinearLayout>
 
@@ -146,7 +148,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:textAllCaps="false"
-                android:text="View repositories" />
+                android:text="@string/view_repositories" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

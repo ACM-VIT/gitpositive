@@ -7,6 +7,7 @@ import org.acmvit.gitpositive.databinding.ActivityHomeScreenBinding
 import android.R.attr.action
 import android.app.Activity
 import android.content.Intent
+import com.google.android.material.textfield.TextInputEditText
 
 
 class HomeScreen : AppCompatActivity() {
@@ -27,8 +28,11 @@ class HomeScreen : AppCompatActivity() {
         val button = binding.floatingActionButton
         button.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("Username",binding.username.getText()?.toString())
             startActivity(intent)
         }
     }
 }
+
+
 fun getColorStr (text : String, color : String): String  =  "<font color=$color>$text</font>"

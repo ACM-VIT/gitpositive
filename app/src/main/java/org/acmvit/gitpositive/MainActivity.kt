@@ -2,10 +2,52 @@ package org.acmvit.gitpositive
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
+import org.acmvit.gitpositive.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
+var BaseURL="https://api.github.com/"
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val Binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = Binding.root
+        setContentView(view)
+        getUserData(binding = Binding );
     }
-}
+
+        fun getUserData(binding:ActivityMainBinding) {
+            val retrofitBuilder = Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BaseURL)
+                .build()
+                .create(ApiInterface::class.java)
+            val username= intent.getStringExtra("Username").toString()
+
+            val retrofitData = retrofitBuilder.getData(username)
+            retrofitData.enqueue(object : Callback<UserData?> {
+                override fun onResponse(call: Call<UserData?>, response: Response<UserData?>) {
+                    val responseBody = response.body()
+                    binding.FollowingCount.append(responseBody?.following.toString())
+                    binding.followerCount.append( responseBody?.followers.toString())
+                    binding.RepoCount.append(responseBody?.public_repos.toString())
+                    binding.bio.text=responseBody?.bio
+                    binding.username.text=responseBody?.name
+                    Glide.with(this@MainActivity)
+                        .load(responseBody?.avatar_url)
+                        .error(R.drawable.error1)
+                        .override(200, 200)
+                        .centerCrop()
+                        .into(binding.avatar)
+                }
+
+                override fun onFailure(call: Call<UserData?>, t: Throwable) {
+
+                }
+            })
+        }
+    }

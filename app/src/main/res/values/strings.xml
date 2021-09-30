@@ -3,4 +3,12 @@
     <string name="username">To Begin with, enter your username</string>
     <string name="about">A better Github profile</string>
     <string name="github_username">Github Username</string>
+    <string name="gitpositive">GitPositive</string>
+    <string name="master_yoda">Master Yoda</string>
+    <string name="user_name">User Name</string>
+    <string name="bio">Bio</string>
+    <string name="followers_n">Followers\n</string>
+    <string name="repositories_n">Repositories\n</string>
+    <string name="following_n">Following\n</string>
+    <string name="view_repositories">View repositories</string>
 </resources>
