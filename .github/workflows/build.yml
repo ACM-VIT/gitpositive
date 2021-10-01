@@ -21,3 +21,9 @@ jobs:
         chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: app-apk
+        path: |
+          app/build/outputs/apk/debug/app-debug.apk
