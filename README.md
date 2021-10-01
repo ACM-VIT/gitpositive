@@ -1,4 +1,4 @@
-![ACM-VIT Banner](https://github.com/gaganmalvi/graphics/raw/main/acm-gh-banner.png)
+![ACM-VIT Banner](https://user-images.githubusercontent.com/52633729/135446856-ed1de284-c21a-4932-bd70-b4eae149c49c.png)
 <h1 align = "center">GitPositive</h1>
 <p align = "center">
 	An efficient GitHub profile app, written in Kotlin!
