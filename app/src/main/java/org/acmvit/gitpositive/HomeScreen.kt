@@ -3,6 +3,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.content.Intent
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.databinding.ActivityHomeScreenBinding
@@ -10,6 +13,7 @@ import org.acmvit.gitpositive.databinding.ActivityHomeScreenBinding
 
 @AndroidEntryPoint
 class HomeScreen : AppCompatActivity() {
+    var vibrator: Vibrator? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityHomeScreenBinding.inflate(layoutInflater)
@@ -19,6 +23,7 @@ class HomeScreen : AppCompatActivity() {
 
         val button = binding.floatingActionButton
         button.setOnClickListener {
+            doVibration()
             if(binding.username.text.toString().isNotEmpty()){
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("Username",binding.username.text?.toString())
@@ -26,8 +31,16 @@ class HomeScreen : AppCompatActivity() {
             } else {
                 Toast.makeText(applicationContext,"Username cannot be empty!!",Toast.LENGTH_SHORT).show()
             }
-
         }
+    }
+    fun doVibration() {
+            vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
+            vibrator!!.vibrate(
+                VibrationEffect.createOneShot(
+                    50,
+                    VibrationEffect.EFFECT_TICK
+                )
+            )
     }
 }
 

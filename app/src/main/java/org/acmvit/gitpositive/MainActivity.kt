@@ -2,6 +2,9 @@ package org.acmvit.gitpositive
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.text.Html
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -18,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
     private var _binding: ActivityMainBinding? = null
+    var vibrator: Vibrator? = null
     private val binding: ActivityMainBinding
         get() {
             return _binding!!
@@ -39,6 +43,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         showLoadingDialog()
         observeViewState()
+        binding.appName.text = Html.fromHtml(getColorStr("Git", "#6CFF54") + getColorStr("Positive", getColor(R.color.text_color).toString()))
+
+        binding.followerCount.setOnClickListener{
+            doVibration()
+            // Other Functionalities to be implemented.
+        }
+
+        binding.RepoCount.setOnClickListener{
+            doVibration()
+            // Other Functionalities to be implemented.
+        }
+
+        binding.FollowingCount.setOnClickListener{
+            doVibration()
+            // Other Functionalities to be implemented.
+        }
+
+        binding.viewRepositories.setOnClickListener{
+            doVibration()
+            // Other Functionalities to be implemented.
+        }
         viewModel.getUserData(intent.getStringExtra("Username").toString())
     }
 
@@ -94,5 +119,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideLoadingDialog() {
         loadingView.hide()
+    }
+    fun doVibration() {
+        vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
+        vibrator!!.vibrate(
+            VibrationEffect.createOneShot(
+                50,
+                VibrationEffect.EFFECT_TICK
+            )
+        )
     }
 }
