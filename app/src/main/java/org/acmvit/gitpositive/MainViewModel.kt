@@ -9,9 +9,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-/**
- * Created by Rooparsh Kalia on 02/10/21
- */
 class MainViewModel : ViewModel() {
     private val BaseURL = "https://api.github.com/"
 
