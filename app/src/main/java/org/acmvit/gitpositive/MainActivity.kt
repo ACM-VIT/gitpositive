@@ -1,80 +1,90 @@
 package org.acmvit.gitpositive
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import org.acmvit.gitpositive.databinding.ActivityMainBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-var BaseURL="https://api.github.com/"
+
 class MainActivity : AppCompatActivity() {
-    private var loadingDialog: AlertDialog? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val Binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = Binding.root
-        setContentView(view)
-        showLoadingDialog()
-        getUserData(binding = Binding);
-    }
 
-        fun getUserData(binding:ActivityMainBinding) {
-            val retrofitBuilder = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(BaseURL)
-                .build()
-                .create(ApiInterface::class.java)
-            val username= intent.getStringExtra("Username").toString()
-            binding.appName.text = Html.fromHtml(getColorStr("Git", "#6CFF54") + getColorStr("Positive",
-                getColor(R.color.text_color).toString()
-            ))
-            val retrofitData = retrofitBuilder.getData(username)
-            retrofitData.enqueue(object : Callback<UserData?> {
-                override fun onResponse(call: Call<UserData?>, response: Response<UserData?>) {
-                    val responseBody = response.body()
-                    binding.FollowingCount.append(responseBody?.following.toString())
-                    binding.followerCount.append( responseBody?.followers.toString())
-                    binding.RepoCount.append(responseBody?.public_repos.toString())
-                    binding.bio.text=responseBody?.bio
-                    binding.username.text=responseBody?.name
-                    binding.userName.text = responseBody?.login
-                    Glide.with(this@MainActivity)
-                        .load(responseBody?.avatar_url)
-                        .error(R.drawable.error1)
-                        .override(200, 200)
-                        .centerCrop()
-                        .into(binding.avatar)
-                    hideLoadingDialog()
-                }
 
-                override fun onFailure(call: Call<UserData?>, t: Throwable) {
-                    Toast.makeText(applicationContext,t.message, Toast.LENGTH_SHORT).show()
-                    hideLoadingDialog()
-                }
-            })
+    private val viewModel by viewModels<MainViewModel>()
+    private var _binding: ActivityMainBinding? = null
+    private val binding: ActivityMainBinding
+        get() {
+            return _binding!!
         }
-    fun showLoadingDialog(){
+
+    private val loadingView by lazy {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.loading_dialog, null)
-        loadingDialog = AlertDialog.Builder(this)
+        val view = AlertDialog.Builder(this)
             .setView(dialogView)
             .setCancelable(false)
             .create()
-        loadingDialog!!.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        loadingDialog!!.show()
+        view.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        return@lazy view
     }
-    fun hideLoadingDialog(){
-        loadingDialog!!.hide()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        showLoadingDialog()
+        observeViewState()
+        viewModel.getUserData(intent.getStringExtra("Username").toString())
+    }
+
+    private fun observeViewState() {
+        viewModel.viewState.observe(this) {
+            it?.let { viewState ->
+                when (viewState) {
+                    is MainViewModel.ViewState.Error -> {
+                        showError(viewState.message)
+                        hideLoadingDialog()
+                    }
+                    MainViewModel.ViewState.Loading -> {
+                        showLoadingDialog()
+                    }
+                    is MainViewModel.ViewState.Success -> {
+                        showData(viewState.userData)
+                        hideLoadingDialog()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showData(userData: UserData) {
+        with(binding) {
+            FollowingCount.append(userData.following.toString())
+            followerCount.append(userData.followers.toString())
+            RepoCount.append(userData.public_repos.toString())
+            bio.text = userData.bio
+            username.text = userData.name
+            userName.text = userData.login
+            Glide.with(this@MainActivity)
+                .load(userData.avatar_url)
+                .error(R.drawable.error1)
+                .override(200, 200)
+                .centerCrop()
+                .into(binding.avatar)
+        }
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showLoadingDialog() {
+        loadingView.show()
+    }
+
+    private fun hideLoadingDialog() {
+        loadingView.hide()
     }
 }
