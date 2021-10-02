@@ -60,10 +60,6 @@ class MainActivity : AppCompatActivity() {
             // Other Functionalities to be implemented.
         }
 
-        binding.viewRepositories.setOnClickListener{
-            doVibration()
-            // Other Functionalities to be implemented.
-        }
         viewModel.getUserData(intent.getStringExtra("Username").toString())
     }
 
@@ -96,6 +92,7 @@ class MainActivity : AppCompatActivity() {
             username.text = userData.name
             userName.text = userData.login
             repositoryButton.setOnClickListener {
+                doVibration()
                 val intent = Intent(this@MainActivity, RepositoryActivity::class.java)
                 intent.putExtra("Username", userData.login)
                 startActivity(intent)
