@@ -3,6 +3,7 @@ package org.acmvit.gitpositive.repositoryList.ui
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -23,6 +24,9 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.repositoryList.model.RepositoryResponseItem
 import org.acmvit.gitpositive.repositoryList.viewmodel.RepositoryViewModel
+import android.content.Intent
+import android.net.Uri
+
 
 @AndroidEntryPoint
 class RepositoryActivity : AppCompatActivity() {
@@ -35,20 +39,27 @@ class RepositoryActivity : AppCompatActivity() {
         val username = intent.getStringExtra("Username")
         viewModel.getUserRepositories(username)
         setContent {
-            RepositoryListScreen(viewModel)
+            RepositoryListScreen(viewModel) {
+                loadRepoInWeb(it)
+            }
         }
+    }
+
+    private fun loadRepoInWeb(url: String) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(browserIntent)
     }
 }
 
 @Composable
-fun RepositoryListScreen(viewModel: RepositoryViewModel) {
+fun RepositoryListScreen(viewModel: RepositoryViewModel, onItemClick: (String) -> Unit) {
     val list by remember {
         viewModel.repoList
     }
     Surface {
         LazyColumn {
             items(list) { item ->
-                SingleRepoItem(item)
+                SingleRepoItem(item) { onItemClick(it) }
             }
         }
     }
@@ -56,12 +67,16 @@ fun RepositoryListScreen(viewModel: RepositoryViewModel) {
 
 @Composable
 fun SingleRepoItem(
-    item: RepositoryResponseItem
+    item: RepositoryResponseItem,
+    onClick: (String) -> Unit
 ) {
     Card(
         modifier = Modifier
             .padding(vertical = 8.dp, horizontal = 20.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable {
+                onClick(item.html_url)
+            },
         shape = RoundedCornerShape(12.dp),
         elevation = 6.dp
     ) {
