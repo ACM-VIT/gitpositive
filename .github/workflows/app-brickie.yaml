@@ -1,0 +1,23 @@
+name: AppBrickieBuilder
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: App Brickie
+    steps:
+      - uses: actions/checkout@v2
+      - name: AppBrickie
+        id: appBrickieBuild
+        uses: DarthBenro008/app-brickie@v3.1
+        with:
+          type: "native"
+          chatid: "c5c5dug538ds725c9lb0"
+          packagename: "GitPositive"
+      - name: Get Automated Result
+        run: echo "${{ steps.appBrickieBuild.outputs.result }}"
