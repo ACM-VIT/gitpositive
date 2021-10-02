@@ -86,6 +86,7 @@
         android:backgroundTint="@color/fab_bg"
         android:clickable="true"
         android:contentDescription="@string/app_name"
+        android:hapticFeedbackEnabled="true"
         app:borderWidth="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottominfo"
         app:layout_constraintEnd_toEndOf="parent"

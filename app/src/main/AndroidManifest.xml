@@ -3,6 +3,8 @@
     package="org.acmvit.gitpositive">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".GitApplication"
         android:allowBackup="true"
