@@ -6,29 +6,28 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.acmvit.gitpositive.ApiInterface
-import org.acmvit.gitpositive.BaseURL
 import org.acmvit.gitpositive.repositoryList.model.RepositoryResponseItem
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class RepositoryViewModel : ViewModel() {
-
-    private var retrofit: ApiInterface = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(BaseURL)
-        .build()
-        .create(ApiInterface::class.java)
+@HiltViewModel
+class RepositoryViewModel @Inject constructor(
+    val retrofit: ApiInterface
+) : ViewModel() {
 
     private val _repoList: MutableState<List<RepositoryResponseItem>> = mutableStateOf(emptyList())
     val repoList: State<List<RepositoryResponseItem>> = _repoList
 
     fun getUserRepositories(username: String?) {
         viewModelScope.launch {
-            val a = retrofit.getReposForUser(username = username)
-            _repoList.value = a.toList()
-            Log.d("BK", a.toString())
+            try {
+                val repoList = retrofit.getReposForUser(username = username)
+                _repoList.value = repoList.toList()
+            } catch (e: Exception) {
+                Log.e("RepositoryViewModel", e.message.toString())
+            }
         }
     }
 }

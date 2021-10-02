@@ -20,9 +20,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.repositoryList.model.RepositoryResponseItem
 import org.acmvit.gitpositive.repositoryList.viewmodel.RepositoryViewModel
 
+@AndroidEntryPoint
 class RepositoryActivity : AppCompatActivity() {
 
     private lateinit var viewModel: RepositoryViewModel
@@ -43,7 +45,7 @@ fun RepositoryListScreen(viewModel: RepositoryViewModel) {
     val list by remember {
         viewModel.repoList
     }
-    Surface(color = Color(0xFF1C1C1C)) {
+    Surface {
         LazyColumn {
             items(list) { item ->
                 SingleRepoItem(item)
@@ -61,7 +63,6 @@ fun SingleRepoItem(
             .padding(vertical = 8.dp, horizontal = 20.dp)
             .fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
-        backgroundColor = Color(0xFF313131),
         elevation = 6.dp
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -78,14 +79,13 @@ fun SingleRepoItem(
                 text = item.name ?: "",
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
-                    color = Color.White
+                    fontSize = 20.sp
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = item.description ?: "",
-                style = TextStyle(fontSize = 14.sp, color = Color.White)
+                style = TextStyle(fontSize = 14.sp)
             )
         }
     }
