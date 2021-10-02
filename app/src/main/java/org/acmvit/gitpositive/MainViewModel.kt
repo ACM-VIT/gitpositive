@@ -3,29 +3,23 @@ package org.acmvit.gitpositive
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
-    private val BaseURL = "https://api.github.com/"
+@HiltViewModel
+class MainViewModel @Inject constructor(private val apiInterface: ApiInterface) : ViewModel() {
 
     private val _viewState = MutableLiveData<ViewState>()
     val viewState: LiveData<ViewState> = _viewState
 
-    private val retrofitBuilder = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(BaseURL)
-        .build()
-        .create(ApiInterface::class.java)
-
-
     fun getUserData(username: String) {
         _viewState.value = ViewState.Loading
-        val retrofitData = retrofitBuilder.getData(username)
-        retrofitData.enqueue(object : Callback<UserData?> {
+        apiInterface.getData(username).enqueue(object : Callback<UserData?> {
             override fun onResponse(call: Call<UserData?>, response: Response<UserData?>) {
                 if (response.isSuccessful && response.body() != null) {
                     _viewState.value = ViewState.Success(response.body()!!)
