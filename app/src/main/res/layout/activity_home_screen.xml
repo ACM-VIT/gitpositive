@@ -73,6 +73,7 @@
             android:fontFamily="@font/poppins"
             android:hint="@string/github_username"
             android:textColor="@color/text_color"
+            android:singleLine="true"
             android:textCursorDrawable="@drawable/cursor" />
 
     </com.google.android.material.textfield.TextInputLayout>
