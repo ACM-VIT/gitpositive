@@ -4,34 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1C1C"
+    android:background="@color/bg_color"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/gitpositive"
         android:textColor="#6CFF54"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
 
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="662dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/appName">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,8 +69,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
                 android:text="@string/master_yoda"
-                android:textColor="@color/white"
+                android:textColor="@color/text_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -77,8 +79,9 @@
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/user_name"
-                android:textColor="#66FFFFFF"
+                android:textColor="@color/text_color_light"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -87,9 +90,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:text="@string/bio"
-                android:textColor="@color/white"
+                android:textColor="@color/text_color"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -101,37 +105,40 @@
             android:layout_marginRight="30dp"
             android:orientation="horizontal">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/follower_count"
                 android:layout_width="110dp"
                 android:layout_height="100dp"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
                 android:background="@drawable/border"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/followers_n"
                 android:textAllCaps="false"
                 android:theme="@style/Button.Grey" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/RepoCount"
                 android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
                 android:background="@drawable/border"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:padding="1dp"
                 android:text="@string/repositories_n"
                 android:textAllCaps="false" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/Following_Count"
                 android:layout_width="110dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:background="@drawable/border"
+                android:fontFamily="@font/poppins_medium"
                 android:padding="5dp"
                 android:text="@string/following_n"
                 android:textAllCaps="false" />
@@ -152,8 +159,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="#00FFFFFF"
+                android:fontFamily="@font/poppins_medium"
                 android:text="@string/view_repositories"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="@color/text_color" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

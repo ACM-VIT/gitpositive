@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_color">#212121</color>
+    <color name="card_bg">#313131</color>
+    <color name="text_color">#E6E6E6</color>
+    <color name="fab_bg">#333333</color>
+    <color name="border_stroke">#7B7B7B</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#7B7B7B</color>
+</resources>
