@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.text.Html
 import android.content.Intent
 import android.widget.Toast
+import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.databinding.ActivityHomeScreenBinding
 
 
+@AndroidEntryPoint
 class HomeScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
