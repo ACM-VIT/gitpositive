@@ -158,7 +158,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/viewRepositories"
+                    android:id="@+id/repository_button"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
@@ -170,5 +170,4 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
