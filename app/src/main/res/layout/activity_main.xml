@@ -148,7 +148,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/repository_button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="#00FFFFFF"
