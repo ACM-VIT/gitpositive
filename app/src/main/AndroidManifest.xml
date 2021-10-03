@@ -16,6 +16,9 @@
         android:theme="@style/Theme.GitPositive">
         <activity
             android:name=".HomeScreen"
+            android:exported="true" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,10 +28,10 @@
         </activity>
         <activity
             android:name=".repositoryList.ui.RepositoryActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
