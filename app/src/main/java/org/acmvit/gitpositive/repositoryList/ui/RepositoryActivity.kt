@@ -56,7 +56,7 @@ fun RepositoryListScreen(viewModel: RepositoryViewModel, onItemClick: (String) -
     val list by remember {
         viewModel.repoList
     }
-    Surface {
+    Surface(color = Color.Black){
         LazyColumn {
             items(list) { item ->
                 SingleRepoItem(item) { onItemClick(it) }
@@ -78,7 +78,8 @@ fun SingleRepoItem(
                 onClick(item.html_url)
             },
         shape = RoundedCornerShape(12.dp),
-        elevation = 6.dp
+        elevation = 6.dp,
+        backgroundColor = Color.DarkGray
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
@@ -92,6 +93,7 @@ fun SingleRepoItem(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = item.name ?: "",
+                color=Color.White,
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp
@@ -100,6 +102,7 @@ fun SingleRepoItem(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = item.description ?: "",
+                color=Color.LightGray,
                 style = TextStyle(fontSize = 14.sp)
             )
         }
