@@ -12,6 +12,7 @@
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/drawable/ic_vector.xml" value="0.2388888888888889" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/layout/activity_home_screen.xml" value="0.264" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/layout/activity_no_network.xml" value="0.18888888888888888" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/layout/loading_dialog.xml" value="0.536" />
         <entry key="..\:/Users/rishu/Downloads/GitPositive/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.23055555555555557" />
         <entry key="..\:/Users/rishu/Downloads/GitPositive/app/src/main/res/drawable/ic_gitpos.xml" value="0.14322916666666666" />
@@ -22,7 +23,6 @@
         <entry key="..\:/Users/rishu/Downloads/GitPositive/app/src/main/res/font/inter.xml" value="0.15729166666666666" />
         <entry key="..\:/Users/rishu/Downloads/GitPositive/app/src/main/res/layout/activity_home_screen.xml" value="0.25" />
         <entry key="..\:/Users/rishu/Downloads/GitPositive/app/src/main/res/layout/activity_main.xml" value="0.15760869565217392" />
-        <entry key="app/src/main/res/drawable/border.xml" value="0.4546875" />
         <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
       </map>

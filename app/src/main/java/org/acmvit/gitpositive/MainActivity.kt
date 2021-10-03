@@ -6,10 +6,13 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.text.Html
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.databinding.ActivityMainBinding
@@ -61,6 +64,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.getUserData(intent.getStringExtra("Username").toString())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val noInternet = findViewById<ConstraintLayout>(R.id.noInternet)
+        val networkConnection = NetworkConnection(applicationContext)
+        networkConnection.observe(this, Observer { isConnected->
+            if(isConnected){
+                noInternet.visibility = View.GONE
+            } else {
+                Toast.makeText(applicationContext, "Internet is not connected", Toast.LENGTH_SHORT).show()
+                noInternet.visibility = View.VISIBLE
+            }
+        })
     }
 
     private fun observeViewState() {
