@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +24,12 @@ class MainViewModel @Inject constructor(private val apiInterface: ApiInterface) 
             override fun onResponse(call: Call<UserData?>, response: Response<UserData?>) {
                 if (response.isSuccessful && response.body() != null) {
                     _viewState.value = ViewState.Success(response.body()!!)
+                } else {
+                    _viewState.value = ViewState.Error(
+                        JSONObject(
+                            response.errorBody()?.string().orEmpty()
+                        ).get("message") as String
+                    )
                 }
             }
 
