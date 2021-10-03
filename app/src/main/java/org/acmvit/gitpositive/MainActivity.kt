@@ -1,6 +1,6 @@
 package org.acmvit.gitpositive
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -9,9 +9,11 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.databinding.ActivityMainBinding
+import org.acmvit.gitpositive.repositoryList.ui.RepositoryActivity
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -58,10 +60,6 @@ class MainActivity : AppCompatActivity() {
             // Other Functionalities to be implemented.
         }
 
-        binding.viewRepositories.setOnClickListener{
-            doVibration()
-            // Other Functionalities to be implemented.
-        }
         viewModel.getUserData(intent.getStringExtra("Username").toString())
     }
 
@@ -93,6 +91,12 @@ class MainActivity : AppCompatActivity() {
             bio.text = userData.bio
             username.text = userData.name
             userName.text = userData.login
+            repositoryButton.setOnClickListener {
+                doVibration()
+                val intent = Intent(this@MainActivity, RepositoryActivity::class.java)
+                intent.putExtra("Username", userData.login)
+                startActivity(intent)
+            }
             Glide.with(this@MainActivity)
                 .load(userData.avatar_url)
                 .error(R.drawable.error1)
