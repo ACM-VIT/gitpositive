@@ -15,9 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitPositive">
         <activity
-            android:name=".NoNetwork"
-            android:exported="true" />
-        <activity
             android:name=".HomeScreen"
             android:exported="true">
             <intent-filter>

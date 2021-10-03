@@ -12,6 +12,9 @@ android {
         viewBinding true
        compose true
     }
+    lintOptions {
+        abortOnError false
+    }
 
     defaultConfig {
         applicationId "org.acmvit.gitpositive"
