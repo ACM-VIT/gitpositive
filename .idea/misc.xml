@@ -3,12 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/GitHub Repositry/Hacktoberfest/gitpositive/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
-        <entry key="..\:/GitHub Repositry/Hacktoberfest/gitpositive/app/src/main/res/layout/activity_splash.xml" value="0.23645833333333333" />
-        <entry key="..\:/GitHub Repositry/Hacktoberfest/gitpositive/app/src/main/res/layout/loading_dialog.xml" value="0.23645833333333333" />
-        <entry key="..\:/HacktoberFest2021/gitpositive/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/HacktoberFest2021/gitpositive/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
-        <entry key="..\:/HacktoberFest2021/gitpositive/app/src/main/res/layout/loading_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2388888888888889" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/drawable/border.xml" value="0.2388888888888889" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/drawable/circle.xml" value="0.2388888888888889" />
@@ -16,6 +10,7 @@
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/drawable/cursor.xml" value="0.2703125" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2388888888888889" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/drawable/ic_vector.xml" value="0.2388888888888889" />
+        <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/font/poppins_bold.xml" value="0.284375" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/layout/activity_home_screen.xml" value="0.264" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/praso/AndroidStudioProjects/gitpositive/app/src/main/res/layout/activity_no_network.xml" value="0.18888888888888888" />
