@@ -1,9 +1,12 @@
 package org.acmvit.gitpositive.repositoryList.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,8 +27,6 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.repositoryList.model.RepositoryResponseItem
 import org.acmvit.gitpositive.repositoryList.viewmodel.RepositoryViewModel
-import android.content.Intent
-import android.net.Uri
 
 
 @AndroidEntryPoint
@@ -56,7 +57,7 @@ fun RepositoryListScreen(viewModel: RepositoryViewModel, onItemClick: (String) -
     val list by remember {
         viewModel.repoList
     }
-    Surface {
+    Surface(color = if (isSystemInDarkTheme()) Color(0xFF000000) else Color(0xFFFFFFFF)) {
         LazyColumn {
             items(list) { item ->
                 SingleRepoItem(item) { onItemClick(it) }
@@ -78,7 +79,9 @@ fun SingleRepoItem(
                 onClick(item.html_url)
             },
         shape = RoundedCornerShape(12.dp),
-        elevation = 6.dp
+        elevation = 6.dp,
+        contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
+        backgroundColor = if (isSystemInDarkTheme()) Color(0xFF212121) else Color(0xFFFFFFFF)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
