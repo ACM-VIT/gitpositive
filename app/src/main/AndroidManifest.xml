@@ -17,14 +17,12 @@
         <activity
             android:name=".repositoryList.AboutActivity"
             android:exported="true" />
+
         <activity
-            android:name=".HomeScreen"
+            android:name=".activities.HomeScreen"
             android:exported="true" />
         <activity
-            android:name="org.acmvit.gitpositive.activities.HomeScreen"
-            android:exported="true" />
-        <activity
-            android:name="org.acmvit.gitpositive.activities.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +34,7 @@
             android:name=".repositoryList.ui.RepositoryActivity"
             android:exported="true" />
         <activity
-            android:name="org.acmvit.gitpositive.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true" />
 
         <meta-data
