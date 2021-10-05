@@ -72,10 +72,6 @@ class RepositoryActivity : AppCompatActivity() {
     }
     fun back(){
         onBackPressed()
-        doVibration()
-    }
-    fun info(){
-        doVibration()
     }
     @Composable
     fun RepositoryListScreen(viewModel: RepositoryViewModel, onItemClick: (String) -> Unit) {
@@ -92,63 +88,74 @@ class RepositoryActivity : AppCompatActivity() {
     }
     @Composable
     fun pageTitle() {
-        Box(
-            modifier = Modifier
-                .wrapContentHeight()
-                .fillMaxWidth()
-                .background(if (isSystemInDarkTheme()) Color(0xFF212121) else Color(0xffffffff)),
-        ) {
-            Row(
+        Surface(color = if (isSystemInDarkTheme()) Color(0xFF212121) else Color(0xffffffff)) {
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
+                    .wrapContentHeight()
+                    .fillMaxWidth()
+                    .padding(top = 16.dp, bottom = 16.dp)
+                    .background(if (isSystemInDarkTheme()) Color(0xFF212121) else Color(0xffffffff)),
             ) {
-                FloatingActionButton(onClick = { back() },
-                    backgroundColor = if (isSystemInDarkTheme()) Color(0xFF313131) else Color(0xFFE6E6E6),
-                    contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
+                Row(
                     modifier = Modifier
-                        .width(40.dp)
-                        .height(40.dp)
-
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(Icons.Filled.ArrowBack, "")
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-                Text(
-                    modifier = Modifier
-                        .wrapContentHeight(),
-                    text = "Your ",
-                    style = TextStyle(
-                        color = Color(0xFF6CFF54),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp
-                    ),
-                )
-                Text(
-                    modifier = Modifier
-                        .wrapContentHeight(),
-                    text = "Repositories",
-                    style = TextStyle(
-                        color = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp
-                    )
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                FloatingActionButton(onClick = { info() },
-                    backgroundColor = if (isSystemInDarkTheme()) Color(0xFF313131) else Color(0xFFE6E6E6),
-                    contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
-                    modifier = Modifier
-                        .width(40.dp)
-                        .height(40.dp)
+                    FloatingActionButton(onClick = { back() },
+                        backgroundColor = if (isSystemInDarkTheme()) Color(0xFF313131) else Color(0xFFE6E6E6),
+                        contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
+                        modifier = Modifier
+                            .width(40.dp)
+                            .height(40.dp)
 
-                ) {
-                    Icon(Icons.Filled.Info, "")
-                }
+                    ) {
+                        Icon(Icons.Filled.ArrowBack, "")
+                    }
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Row(
+                        modifier = Modifier
+                            .wrapContentSize(),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .wrapContentHeight(),
+                            text = "Your ",
+                            style = TextStyle(
+                                color = Color(0xFF6CFF54),
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 24.sp
+                            ),
+                        )
+                        Text(
+                            modifier = Modifier
+                                .wrapContentHeight(),
+                            text = "Repositories",
+                            style = TextStyle(
+                                color = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 24.sp
+                            )
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(10.dp))
+                    FloatingActionButton(onClick = {  },
+                        backgroundColor = if (isSystemInDarkTheme()) Color(0xFF313131) else Color(0xFFE6E6E6),
+                        contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
+                        modifier = Modifier
+                            .width(40.dp)
+                            .height(40.dp)
 
+                    ) {
+                        Icon(Icons.Filled.Info, "")
+                    }
+
+                }
             }
         }
+
     }
     @Composable
     fun SingleRepoItem(
