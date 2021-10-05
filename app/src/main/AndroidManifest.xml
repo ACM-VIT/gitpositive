@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitPositive">
         <activity
-            android:name="org.acmvit.gitpositive.activities.AboutActivity"
+            android:name=".repositoryList.AboutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeScreen"
             android:exported="true" />
         <activity
             android:name="org.acmvit.gitpositive.activities.HomeScreen"
