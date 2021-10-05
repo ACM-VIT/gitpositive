@@ -11,4 +11,8 @@
     <string name="repositories_n">Repositories\n</string>
     <string name="following_n">Following\n</string>
     <string name="view_repositories">View repositories</string>
+    <string name="about_acm_vit">ACM-VIT, one of the most reputed and distinguished technical chapter in VIT-Vellore has been working with vision and determination since it’s inception in 2009.</string>
+    <string name="made_with_by_acm_vit">Made with ❤ by ACM-VIT</string>
+    <string name="app_version">Version 1.0</string>
+    <string name="about_header">About</string>
 </resources>
