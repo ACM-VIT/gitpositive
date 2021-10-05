@@ -70,14 +70,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:hint="@string/github_username"
-                android:textColor="@color/text_color"
                 android:singleLine="true"
+                android:textColor="@color/text_color"
                 android:textCursorDrawable="@drawable/cursor" />
 
         </com.google.android.material.textfield.TextInputLayout>
