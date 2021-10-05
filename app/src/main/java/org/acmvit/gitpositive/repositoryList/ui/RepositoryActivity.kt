@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.activities.AboutActivity
-import org.acmvit.gitpositive.MainActivity
 import org.acmvit.gitpositive.repositoryList.model.RepositoryResponseItem
 import org.acmvit.gitpositive.repositoryList.viewmodel.RepositoryViewModel
 
