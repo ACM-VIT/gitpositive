@@ -17,6 +17,7 @@
         <!-- Bottom navigation bar colour -->
         <item name="android:navigationBarColor">@color/white</item>
         <!-- Customize your theme here. -->
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
 
     </style>
 
@@ -26,5 +27,14 @@
 
     <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxStrokeColor">@color/git_green</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_bg</item>
+    </style>
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
 </resources>
