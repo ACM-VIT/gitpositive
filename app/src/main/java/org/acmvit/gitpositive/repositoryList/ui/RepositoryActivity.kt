@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.MainActivity
+import org.acmvit.gitpositive.repositoryList.AboutActivity
 import org.acmvit.gitpositive.repositoryList.model.RepositoryResponseItem
 import org.acmvit.gitpositive.repositoryList.viewmodel.RepositoryViewModel
 
@@ -72,6 +73,10 @@ class RepositoryActivity : AppCompatActivity() {
     }
     fun back(){
         onBackPressed()
+    }
+    fun info(){
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
     }
     @Composable
     fun RepositoryListScreen(viewModel: RepositoryViewModel, onItemClick: (String) -> Unit) {
@@ -141,7 +146,7 @@ class RepositoryActivity : AppCompatActivity() {
                         )
                     }
                     Spacer(modifier = Modifier.width(10.dp))
-                    FloatingActionButton(onClick = {  },
+                    FloatingActionButton(onClick = { info() },
                         backgroundColor = if (isSystemInDarkTheme()) Color(0xFF313131) else Color(0xFFE6E6E6),
                         contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
                         modifier = Modifier

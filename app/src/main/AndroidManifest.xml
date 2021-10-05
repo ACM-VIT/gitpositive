@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitPositive">
         <activity
+            android:name=".repositoryList.AboutActivity"
+            android:exported="true" />
+        <activity
             android:name=".HomeScreen"
             android:exported="true" />
         <activity
