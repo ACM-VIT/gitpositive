@@ -1,9 +1,8 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.content.Intent
-import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
@@ -13,7 +12,9 @@ import androidx.lifecycle.Observer
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
+import org.acmvit.gitpositive.R
 import org.acmvit.gitpositive.databinding.ActivityHomeScreenBinding
+import org.acmvit.gitpositive.network.NetworkConnection
 
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.network
 
 import dagger.Module
 import dagger.Provides

@@ -1,5 +1,6 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.network
 
+import org.acmvit.gitpositive.models.UserData
 import org.acmvit.gitpositive.repositoryList.model.RepositoryResponse
 import retrofit2.Call
 import retrofit2.http.GET

@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.acmvit.gitpositive.ApiInterface
+import org.acmvit.gitpositive.network.ApiInterface
 import org.acmvit.gitpositive.repositoryList.model.RepositoryResponseItem
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.network
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

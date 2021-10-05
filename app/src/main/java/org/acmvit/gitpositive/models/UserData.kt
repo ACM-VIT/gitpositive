@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.models
 
 data class UserData(
     val avatar_url: String,

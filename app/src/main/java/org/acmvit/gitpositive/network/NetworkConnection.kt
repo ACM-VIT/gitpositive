@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.network
 
 import android.annotation.TargetApi
 import android.content.BroadcastReceiver
@@ -8,7 +8,6 @@ import android.content.IntentFilter
 import android.net.*
 import android.os.Build
 import android.util.Log
-import androidx.compose.material.contentColorFor
 import androidx.lifecycle.LiveData
 
 class NetworkConnection(private val context:Context) : LiveData<Boolean>() {

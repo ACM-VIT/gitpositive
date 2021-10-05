@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".GitApplication"
+        android:name=".network.GitApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,13 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitPositive">
         <activity
-            android:name=".repositoryList.AboutActivity"
+            android:name="org.acmvit.gitpositive.activities.AboutActivity"
             android:exported="true" />
         <activity
-            android:name=".HomeScreen"
+            android:name="org.acmvit.gitpositive.activities.HomeScreen"
             android:exported="true" />
         <activity
-            android:name=".SplashActivity"
+            android:name="org.acmvit.gitpositive.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
             android:name=".repositoryList.ui.RepositoryActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name="org.acmvit.gitpositive.activities.MainActivity"
             android:exported="true" />
 
         <meta-data
