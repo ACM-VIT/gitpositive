@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.text.Editable
 import android.view.View
 import android.text.Html
+import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.databinding.ActivityHomeScreenBinding
 
@@ -43,6 +46,20 @@ class HomeScreen : AppCompatActivity() {
             )
         )
 
+        binding.username.addTextChangedListener(object : TextWatcher {
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                viewModel.getFilterData(p0.toString())
+            }
+
+        })
         binding.floatingActionButton.setOnClickListener {
             doVibration()
             if (binding.username.text.toString().isNotEmpty()) {
@@ -84,13 +101,14 @@ class HomeScreen : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         val textBox = findViewById<TextInputLayout>(R.id.textInputLayout)
         val networkConnection = NetworkConnection(applicationContext)
-        networkConnection.observe(this, Observer { isConnected->
-            if(isConnected){
+        networkConnection.observe(this, Observer { isConnected ->
+            if (isConnected) {
                 noInternet.visibility = View.GONE
                 fab.visibility = View.VISIBLE
                 textBox.visibility = View.VISIBLE
             } else {
-                Toast.makeText(applicationContext, "Internet is not connected", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Internet is not connected", Toast.LENGTH_SHORT)
+                    .show()
                 noInternet.visibility = View.VISIBLE
                 fab.visibility = View.GONE
                 textBox.visibility = View.GONE
