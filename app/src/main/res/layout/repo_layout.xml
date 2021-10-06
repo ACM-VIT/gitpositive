@@ -42,7 +42,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins_medium"
             android:maxLines="1"
-            android:text="Name"
+            android:text="@string/name"
             android:textColor="@color/text_color"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins"
-            android:text="Description"
+            android:text="@string/description"
             android:textColor="@color/text_color_light"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/poppins_light"
-            android:text="Language"
+            android:text="@string/language"
             android:textColor="@color/git_green"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:fontFamily="@font/poppins_light"
-            android:text="Stars"
+            android:text="@string/stars"
             android:textColor="@color/git_green"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/language"
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:fontFamily="@font/poppins_light"
-            android:text="Forks"
+            android:text="@string/forks"
             android:textColor="@color/git_green"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/stars"
@@ -109,22 +109,22 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="16dp"
-            android:tint="@color/git_green"
             app:layout_constraintBottom_toBottomOf="@+id/fork"
             app:layout_constraintStart_toEndOf="@+id/stars"
             app:layout_constraintTop_toTopOf="@+id/fork"
-            app:srcCompat="@drawable/ic_fork" />
+            app:srcCompat="@drawable/ic_fork"
+            app:tint="@color/git_green" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="16dp"
-            android:tint="@color/git_green"
             app:layout_constraintBottom_toBottomOf="@+id/stars"
             app:layout_constraintStart_toEndOf="@+id/language"
             app:layout_constraintTop_toTopOf="@+id/stars"
-            app:srcCompat="@drawable/ic_star" />
+            app:srcCompat="@drawable/ic_star"
+            app:tint="@color/git_green" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
