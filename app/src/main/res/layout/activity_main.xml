@@ -154,16 +154,26 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/border"
                 android:orientation="vertical">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/repository_button"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="#00FFFFFF"
+                    android:background="@drawable/border"
                     android:fontFamily="@font/poppins_medium_ttf"
                     android:text="@string/view_repositories"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_color" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/shareProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border"
+                    android:fontFamily="@font/poppins_medium_ttf"
+                    android:text="Share Profile"
                     android:textAllCaps="false"
                     android:textColor="@color/text_color" />
             </LinearLayout>
