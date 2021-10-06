@@ -21,6 +21,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.adapters.FollowersAdapter
@@ -85,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         val noInternet = findViewById<ConstraintLayout>(R.id.noInternet)
         val networkConnection = NetworkConnection(applicationContext)
-        networkConnection.observe(this, Observer { isConnected->
+        networkConnection.observe(this, { isConnected->
             if(isConnected){
                 noInternet.visibility = View.GONE
             } else {
