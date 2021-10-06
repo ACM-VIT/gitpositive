@@ -96,7 +96,8 @@ class MainActivity : AppCompatActivity() {
         })
     }
     private fun followersBottomSheet(){
-        val url = "https://api.github.com/users/"+intent.getStringExtra("Username").toString()+"/followers"
+        val url = "https://api.github.com/users/"+intent.getStringExtra("Username").toString()+"/followers" +
+                "?per_page=100"
         var followersList = mutableListOf<Follower>()
 
         var layoutManager: RecyclerView.LayoutManager? = LinearLayoutManager(this)
@@ -164,7 +165,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun followingBottomSheet(){
-        val url = "https://api.github.com/users/"+intent.getStringExtra("Username").toString()+"/following"
+        val url = "https://api.github.com/users/"+intent.getStringExtra("Username").toString()+"/following" +
+                "?per_page=100"
         var followingList = mutableListOf<Following>()
 
         var layoutManager: RecyclerView.LayoutManager? = LinearLayoutManager(this)
