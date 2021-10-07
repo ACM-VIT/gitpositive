@@ -7,6 +7,42 @@
     android:background="@color/bg_color"
     tools:context=".MainActivity">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        app:backgroundTint="@color/card_bg"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/appName"
+        app:layout_constraintEnd_toStartOf="@+id/appName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appName"
+        app:maxImageSize="20dp"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        app:tint="@color/text_color" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/shareProfile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:backgroundTint="@color/card_bg"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/appName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/appName"
+        app:layout_constraintTop_toTopOf="@+id/appName"
+        app:maxImageSize="20dp"
+        app:srcCompat="@drawable/ic_share"
+        app:tint="@color/text_color" />
+
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
@@ -17,7 +53,7 @@
         android:fontFamily="@font/poppins_medium_ttf"
         android:text="@string/gitpositive"
         android:textColor="#6CFF54"
-        android:textSize="48sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -166,16 +202,6 @@
                     android:textAllCaps="false"
                     android:textColor="@color/text_color" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/shareProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/border"
-                    android:fontFamily="@font/poppins_medium_ttf"
-                    android:text="Share Profile"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_color" />
             </LinearLayout>
         </LinearLayout>
 

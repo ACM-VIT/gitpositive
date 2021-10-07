@@ -94,6 +94,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(intent, "GitPositive"))
         }
 
+        binding.backButton.setOnClickListener{
+            onBackPressed()
+            doVibration()
+        }
+
         viewModel.getUserData(intent.getStringExtra("Username").toString())
     }
 
