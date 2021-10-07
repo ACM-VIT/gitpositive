@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.ui.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +15,9 @@ import com.google.android.material.textfield.TextInputLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
+import org.acmvit.gitpositive.ui.main.MainActivity
+import org.acmvit.gitpositive.util.NetworkConnection
+import org.acmvit.gitpositive.R
 import org.acmvit.gitpositive.databinding.ActivityHomeScreenBinding
 
 

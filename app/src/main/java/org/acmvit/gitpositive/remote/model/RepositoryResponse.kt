@@ -1,3 +1,3 @@
-package org.acmvit.gitpositive.repositoryList.model
+package org.acmvit.gitpositive.remote.model
 
 class RepositoryResponse : ArrayList<RepositoryResponseItem>()

@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive.repositoryList.ui
+package org.acmvit.gitpositive.ui.repository
 
 import android.content.Intent
 import android.net.Uri
@@ -30,10 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
-import org.acmvit.gitpositive.MainActivity
-import org.acmvit.gitpositive.repositoryList.AboutActivity
-import org.acmvit.gitpositive.repositoryList.model.RepositoryResponseItem
-import org.acmvit.gitpositive.repositoryList.viewmodel.RepositoryViewModel
+import org.acmvit.gitpositive.ui.about.AboutActivity
+import org.acmvit.gitpositive.remote.model.RepositoryResponseItem
 
 
 @AndroidEntryPoint

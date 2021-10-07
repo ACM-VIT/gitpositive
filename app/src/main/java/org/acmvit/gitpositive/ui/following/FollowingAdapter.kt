@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive.adapters
+package org.acmvit.gitpositive.ui.following
 
 import android.content.Intent
 import android.net.Uri

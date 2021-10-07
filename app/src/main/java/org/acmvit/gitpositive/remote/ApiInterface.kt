@@ -1,6 +1,7 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.remote
 
-import org.acmvit.gitpositive.repositoryList.model.RepositoryResponse
+import org.acmvit.gitpositive.remote.model.UserData
+import org.acmvit.gitpositive.remote.model.RepositoryResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

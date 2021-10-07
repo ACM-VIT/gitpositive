@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive.repositoryList.model
+package org.acmvit.gitpositive.remote.model
 
 data class License(
     val key: String,

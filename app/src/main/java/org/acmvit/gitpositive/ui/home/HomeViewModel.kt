@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

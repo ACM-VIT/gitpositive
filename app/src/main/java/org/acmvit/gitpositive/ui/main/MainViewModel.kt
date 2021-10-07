@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.acmvit.gitpositive.remote.ApiInterface
+import org.acmvit.gitpositive.remote.model.UserData
 import org.acmvit.gitpositive.local.User
 import org.acmvit.gitpositive.local.UserDao
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 @HiltViewModel

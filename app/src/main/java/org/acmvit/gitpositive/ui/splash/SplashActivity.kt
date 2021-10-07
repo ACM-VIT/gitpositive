@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive
+package org.acmvit.gitpositive.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Html
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import org.acmvit.gitpositive.R
+import org.acmvit.gitpositive.ui.home.HomeScreen
+import org.acmvit.gitpositive.ui.home.getColorStr
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +20,8 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }, 3000)
         val appName = findViewById<TextView>(R.id.appName2)
-        appName.text = Html.fromHtml(getColorStr("Git", "#6CFF54") + getColorStr("Positive", getColor(R.color.text_color).toString()))
+        appName.text = Html.fromHtml(getColorStr("Git", "#6CFF54") + getColorStr("Positive", getColor(
+            R.color.text_color
+        ).toString()))
     }
 }
