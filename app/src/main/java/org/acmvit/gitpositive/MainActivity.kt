@@ -26,9 +26,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.adapters.FollowersAdapter
 import org.acmvit.gitpositive.adapters.FollowingAdapter
+import org.acmvit.gitpositive.adapters.RepositoryAdapter
 import org.acmvit.gitpositive.databinding.ActivityMainBinding
 import org.acmvit.gitpositive.models.Follower
 import org.acmvit.gitpositive.models.Following
+import org.acmvit.gitpositive.models.Repository
 import org.acmvit.gitpositive.repositoryList.ui.RepositoryActivity
 import org.json.JSONObject
 
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.RepoCount.setOnClickListener{
             doVibration()
+            repositoriesBottomSheet()
             // Other Functionalities to be implemented.
         }
 
@@ -77,6 +80,23 @@ class MainActivity : AppCompatActivity() {
             doVibration()
             followingBottomSheet()
             // Other Functionalities to be implemented.
+        }
+
+        binding.shareProfile.setOnClickListener{
+            doVibration()
+            val message = "Hey!! Follow me on GitHub with the given link " +
+                    "and don't forget to star my repositories \n" +
+                    "https://github.com/"+intent.getStringExtra("Username").toString()
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, message)
+            startActivity(Intent.createChooser(intent, "GitPositive"))
+        }
+
+        binding.backButton.setOnClickListener{
+            onBackPressed()
+            doVibration()
         }
 
         viewModel.getUserData(intent.getStringExtra("Username").toString())
@@ -94,6 +114,53 @@ class MainActivity : AppCompatActivity() {
                 noInternet.visibility = View.VISIBLE
             }
         })
+    }
+
+    private fun repositoriesBottomSheet(){
+        val url = "https://api.github.com/users/"+intent.getStringExtra("Username").toString()+"/repos" +
+                "?per_page=100"
+        var repositoryList = mutableListOf<Repository>()
+
+        var layoutManager: RecyclerView.LayoutManager? = LinearLayoutManager(this)
+        var adapter: RecyclerView.Adapter<RepositoryAdapter.ViewHolder>? = RepositoryAdapter(repositoryList)
+
+        Log.i("url_of_profile", url)
+
+        val repoDialog = BottomSheetDialog(this)
+        repoDialog.setContentView(R.layout.bottom_followers)
+        repoDialog.findViewById<TextView>(R.id.bottom_top)!!.text = Html.fromHtml(getColorStr("Your ", "#6CFF54") + getColorStr("Repositories", getColor(R.color.text_color).toString()))
+        val repoRecyclerView = repoDialog.findViewById<RecyclerView>(R.id.recyclerView)
+        repoRecyclerView?.adapter = adapter
+        repoRecyclerView?.layoutManager = layoutManager
+        val mQueue = Volley.newRequestQueue(this)
+        val request = JsonArrayRequest(
+            Request.Method.GET, url, null
+            , { response ->
+                for(i in 0 until response.length()){
+                    val repo: JSONObject = response.getJSONObject(i)
+                    val name = repo["name"].toString()
+                    val html_url = repo["html_url"].toString()
+                    val description = repo["description"].toString()
+                    val language = repo["language"].toString()
+                    val stars = repo["stargazers_count"]
+                    val forks_count = repo["forks_count"]
+
+                    val repoData = Repository(
+                        name,
+                        html_url,
+                        description,
+                        language,
+                        stars as Int, forks_count as Int
+                    )
+                    repositoryList.add(repoData)
+                }
+                adapter?.notifyDataSetChanged()
+
+            }, { error ->
+                Toast.makeText(applicationContext,error.message,Toast.LENGTH_SHORT).show()
+            })
+        mQueue.add(request)
+        repoDialog.show()
     }
     private fun followersBottomSheet(){
         val url = "https://api.github.com/users/"+intent.getStringExtra("Username").toString()+"/followers" +
