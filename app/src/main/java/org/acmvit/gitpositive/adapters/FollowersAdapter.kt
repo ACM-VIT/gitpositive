@@ -36,12 +36,11 @@ class FollowersAdapter(private val dataSet: MutableList<Follower>) :
             .override(200, 200)
             .centerCrop()
             .into(viewHolder.image)
-        viewHolder.clickMe.setOnClickListener(
-            {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataSet.elementAt(position).html_url))
-                viewHolder.clickMe.context.startActivity(browserIntent)
-            }
-        )
+        viewHolder.clickMe.setOnClickListener {
+            val browserIntent =
+                Intent(Intent.ACTION_VIEW, Uri.parse(dataSet.elementAt(position).html_url))
+            viewHolder.clickMe.context.startActivity(browserIntent)
+        }
     }
     override fun getItemCount() = dataSet.size
 

@@ -15,4 +15,9 @@
     <string name="made_with_by_acm_vit">Made with ❤ by ACM-VIT</string>
     <string name="app_version">Version 1.0</string>
     <string name="about_header">About</string>
+    <string name="forks">Forks</string>
+    <string name="stars">Stars</string>
+    <string name="language">Language</string>
+    <string name="description">Description</string>
+    <string name="name">Name</string>
 </resources>
