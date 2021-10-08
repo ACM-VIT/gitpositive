@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.acmvit.gitpositive.R
-import org.acmvit.gitpositive.models.Following
+import org.acmvit.gitpositive.remote.model.Following
 
 class FollowingAdapter(private val dataSet: MutableList<Following>) :
     RecyclerView.Adapter<FollowingAdapter.ViewHolder>() {

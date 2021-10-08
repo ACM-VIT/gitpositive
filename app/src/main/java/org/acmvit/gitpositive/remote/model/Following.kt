@@ -1,4 +1,4 @@
-package org.acmvit.gitpositive.models
+package org.acmvit.gitpositive.remote.model
 
 data class Following (
     val login :String,

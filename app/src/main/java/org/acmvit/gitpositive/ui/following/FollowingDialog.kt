@@ -12,7 +12,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.acmvit.gitpositive.R
-import org.acmvit.gitpositive.models.Following
+import org.acmvit.gitpositive.remote.model.Following
 import org.acmvit.gitpositive.ui.home.getColorStr
 import org.json.JSONObject
 

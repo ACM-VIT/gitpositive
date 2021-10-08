@@ -22,6 +22,7 @@ import org.acmvit.gitpositive.ui.follower.FollowerDialog
 import org.acmvit.gitpositive.ui.following.FollowingDialog
 import org.acmvit.gitpositive.ui.repository.RepositoryActivity
 import org.acmvit.gitpositive.ui.home.getColorStr
+import org.acmvit.gitpositive.ui.repository.RepositoryDialog
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.RepoCount.setOnClickListener {
             doVibration()
+            repositoriesBottomSheet()
             // Other Functionalities to be implemented.
         }
 
@@ -72,6 +74,23 @@ class MainActivity : AppCompatActivity() {
             doVibration()
             followingBottomSheet()
             // Other Functionalities to be implemented.
+        }
+
+        binding.shareProfile.setOnClickListener {
+            doVibration()
+            val message = "Hey!! Follow me on GitHub with the given link " +
+                    "and don't forget to star my repositories \n" +
+                    "https://github.com/" + intent.getStringExtra("Username").toString()
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, message)
+            startActivity(Intent.createChooser(intent, "GitPositive"))
+        }
+
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+            doVibration()
         }
 
         viewModel.getUserData(intent.getStringExtra("Username").toString())
@@ -100,6 +119,11 @@ class MainActivity : AppCompatActivity() {
     private fun followingBottomSheet() {
         val followingDialog = FollowingDialog(this, intent.getStringExtra("Username").orEmpty())
         followingDialog.show()
+    }
+
+    private fun repositoriesBottomSheet() {
+        val repoDialog = RepositoryDialog(this, intent.getStringExtra("Username").orEmpty())
+        repoDialog.show()
     }
 
     private fun observeViewState() {

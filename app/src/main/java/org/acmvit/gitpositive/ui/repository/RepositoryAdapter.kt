@@ -1,20 +1,16 @@
-package org.acmvit.gitpositive.adapters
+package org.acmvit.gitpositive.ui.repository
 
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.acmvit.gitpositive.R
-import org.acmvit.gitpositive.models.Following
-import org.acmvit.gitpositive.models.Repository
+import org.acmvit.gitpositive.remote.model.Repository
 
 class RepositoryAdapter(private val dataSet: MutableList<Repository>) :
     RecyclerView.Adapter<RepositoryAdapter.ViewHolder>() {
