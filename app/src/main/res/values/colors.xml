@@ -17,4 +17,14 @@
     <color name="fab_bg">#999999</color>
     <color name="border_stroke">#999999</color>
     <color name="mtrl_textinput_default_box_stroke_color">#999999</color>
+
+    <color name="dash_bg">#121212</color>
+    <color name="dash_card">#1C1C1C</color>
+    <color name="dash_text">#FFFFFF</color>
+    <color name="dash_text_light">#656565</color>
+    <color name="red_follow">#DB5151</color>
+    <color name="purple_follow">#DA8BFF</color>
+
+    <color name="translucent">#00000000</color>
+
 </resources>

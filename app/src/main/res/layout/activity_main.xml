@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color"
+    android:background="@color/dash_bg"
+    android:id="@+id/layout_dashBoard"
     tools:context=".MainActivity">
 
     <TextView
@@ -74,7 +75,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_bold_ttf"
                     android:text="@string/master_yoda"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/dash_text"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -84,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_semibold_ttf"
                     android:text="@string/user_name"
-                    android:textColor="@color/text_color_light"
+                    android:textColor="@color/dash_text_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -96,7 +97,7 @@
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
                     android:text="@string/bio"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/dash_text"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -108,43 +109,114 @@
                 android:layout_marginRight="30dp"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/follower_count"
+                <LinearLayout
                     android:layout_width="110dp"
                     android:layout_height="100dp"
-                    android:layout_marginRight="6dp"
+                    android:id="@+id/follower_count_box"
+                    android:layout_marginStart="6dp"
                     android:layout_weight="1"
-                    android:background="@drawable/border"
-                    android:fontFamily="@font/poppins_medium_ttf"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="@string/followers_n"
                     android:textAllCaps="false"
-                    android:theme="@style/Button.Grey" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/RepoCount"
-                    android:layout_width="120dp"
-                    android:layout_height="100dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_weight="1"
                     android:background="@drawable/border"
-                    android:fontFamily="@font/poppins_medium_ttf"
-                    android:gravity="center"
-                    android:padding="1dp"
-                    android:text="@string/repositories_n"
-                    android:textAllCaps="false" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/Following_Count"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium_ttf"
+                        android:text=""
+                        android:layout_marginTop="12dp"
+                        android:textColor="@color/red_follow"
+                        android:id="@+id/follower_count"
+                        android:textSize="22sp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium_ttf"
+                        android:text="@string/followers_n"
+                        android:textSize="12sp"
+                        android:textColor="@color/dash_text_light"
+                        android:layout_gravity="center"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="110dp"
                     android:layout_height="100dp"
+                    android:id="@+id/RepoCountBox"
+                    android:layout_marginStart="6dp"
                     android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
                     android:background="@drawable/border"
-                    android:fontFamily="@font/poppins_medium_ttf"
-                    android:padding="5dp"
-                    android:text="@string/following_n"
-                    android:textAllCaps="false" />
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/RepoCount"
+                        android:fontFamily="@font/poppins_medium_ttf"
+                        android:text=""
+                        android:layout_marginTop="12dp"
+                        android:textColor="@color/git_green"
+                        android:textSize="22sp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium_ttf"
+                        android:text="@string/repositories_n"
+                        android:textSize="12sp"
+                        android:textColor="@color/dash_text_light"
+                        android:layout_gravity="center"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="110dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/Following_Count_Box"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/border"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Following_Count"
+                        android:fontFamily="@font/poppins_medium_ttf"
+                        android:text=""
+                        android:layout_marginTop="12dp"
+                        android:textColor="@color/purple_follow"
+                        android:textSize="22sp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium_ttf"
+                        android:text="@string/following_n"
+                        android:textSize="12sp"
+                        android:textColor="@color/dash_text_light"
+                        android:layout_gravity="center"/>
+
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -164,8 +236,8 @@
                     android:background="#00FFFFFF"
                     android:fontFamily="@font/poppins_medium_ttf"
                     android:text="@string/view_repositories"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_color" />
+                    android:textColor="@color/dash_text"
+                    android:textAllCaps="false" />
             </LinearLayout>
         </LinearLayout>
 
