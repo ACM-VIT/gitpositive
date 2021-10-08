@@ -8,7 +8,7 @@ import android.text.Html
 import android.widget.TextView
 import org.acmvit.gitpositive.R
 import org.acmvit.gitpositive.ui.home.HomeScreen
-import org.acmvit.gitpositive.ui.home.getColorStr
+import org.acmvit.gitpositive.util.getColorStr
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

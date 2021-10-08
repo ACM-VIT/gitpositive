@@ -7,7 +7,7 @@ import android.text.Html
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.acmvit.gitpositive.R
-import org.acmvit.gitpositive.ui.home.getColorStr
+import org.acmvit.gitpositive.util.getColorStr
 
 class AboutActivity : AppCompatActivity() {
     val message = "Hey!! I found an amazing app called GitPositive created by ACM-VIT. " +

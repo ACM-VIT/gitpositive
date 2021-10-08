@@ -21,14 +21,14 @@ import org.acmvit.gitpositive.databinding.ActivityMainBinding
 import org.acmvit.gitpositive.ui.follower.FollowerDialog
 import org.acmvit.gitpositive.ui.following.FollowingDialog
 import org.acmvit.gitpositive.ui.repository.RepositoryActivity
-import org.acmvit.gitpositive.ui.home.getColorStr
 import org.acmvit.gitpositive.ui.repository.RepositoryDialog
+import org.acmvit.gitpositive.util.doVibration
+import org.acmvit.gitpositive.util.getColorStr
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
     private var _binding: ActivityMainBinding? = null
-    var vibrator: Vibrator? = null
     private val binding: ActivityMainBinding
         get() {
             return _binding!!
@@ -155,7 +155,7 @@ class MainActivity : AppCompatActivity() {
             username.text = userData.name
             userName.text = userData.login
             repositoryButton.setOnClickListener {
-                doVibration()
+                this@MainActivity.doVibration()
                 val intent = Intent(this@MainActivity, RepositoryActivity::class.java)
                 intent.putExtra("Username", userData.login)
                 startActivity(intent)
@@ -179,15 +179,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideLoadingDialog() {
         loadingView.hide()
-    }
-
-    fun doVibration() {
-        vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
-        vibrator!!.vibrate(
-            VibrationEffect.createOneShot(
-                50,
-                VibrationEffect.EFFECT_TICK
-            )
-        )
     }
 }

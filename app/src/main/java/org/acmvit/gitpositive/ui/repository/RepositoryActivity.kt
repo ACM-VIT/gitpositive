@@ -60,15 +60,6 @@ class RepositoryActivity : AppCompatActivity() {
         startActivity(browserIntent)
     }
 
-    fun doVibration() {
-        vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
-        vibrator!!.vibrate(
-            VibrationEffect.createOneShot(
-                50,
-                VibrationEffect.EFFECT_TICK
-            )
-        )
-    }
     fun back(){
         onBackPressed()
     }

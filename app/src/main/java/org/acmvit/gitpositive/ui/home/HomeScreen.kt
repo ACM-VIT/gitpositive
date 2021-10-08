@@ -22,11 +22,12 @@ import org.acmvit.gitpositive.ui.main.MainActivity
 import org.acmvit.gitpositive.util.NetworkConnection
 import org.acmvit.gitpositive.R
 import org.acmvit.gitpositive.databinding.ActivityHomeScreenBinding
+import org.acmvit.gitpositive.util.doVibration
+import org.acmvit.gitpositive.util.getColorStr
 
 
 @AndroidEntryPoint
 class HomeScreen : AppCompatActivity() {
-    var vibrator: Vibrator? = null
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -64,7 +65,7 @@ class HomeScreen : AppCompatActivity() {
 
         })
         binding.floatingActionButton.setOnClickListener {
-            doVibration()
+            this.doVibration()
             if (binding.username.text.toString().isNotEmpty()) {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("Username", binding.username.text?.toString())
@@ -88,16 +89,6 @@ class HomeScreen : AppCompatActivity() {
         }
     }
 
-    private fun doVibration() {
-        vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
-        vibrator!!.vibrate(
-            VibrationEffect.createOneShot(
-                50,
-                VibrationEffect.EFFECT_TICK
-            )
-        )
-    }
-
     override fun onResume() {
         super.onResume()
         val noInternet = findViewById<ConstraintLayout>(R.id.noInternet)
@@ -119,6 +110,3 @@ class HomeScreen : AppCompatActivity() {
         })
     }
 }
-
-
-fun getColorStr(text: String, color: String): String = "<font color=$color>$text</font>"
