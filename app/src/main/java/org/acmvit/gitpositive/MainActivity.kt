@@ -1,6 +1,7 @@
 package org.acmvit.gitpositive
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -8,6 +9,7 @@ import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -33,6 +35,10 @@ import org.acmvit.gitpositive.models.Following
 import org.acmvit.gitpositive.models.Repository
 import org.acmvit.gitpositive.repositoryList.ui.RepositoryActivity
 import org.json.JSONObject
+import android.view.WindowManager
+
+
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -60,23 +66,35 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val overlay = findViewById<View>(R.id.layout_dashBoard)
+        overlay.systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+
+        window.navigationBarColor = resources.getColor(R.color.translucent)
+
+        val window: Window = window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        val colorCodeDark: Int = Color.parseColor("#1C1C1C")
+        window.setStatusBarColor(colorCodeDark)
+
         showLoadingDialog()
         observeViewState()
-        binding.appName.text = Html.fromHtml(getColorStr("Git", "#6CFF54") + getColorStr("Positive", getColor(R.color.text_color).toString()))
+        binding.appName.text = Html.fromHtml(getColorStr("Git", "#6CFF54") + getColorStr("Positive", "#FFFFFF"))
 
-        binding.followerCount.setOnClickListener{
+        binding.followerCountBox.setOnClickListener{
             doVibration()
             followersBottomSheet()
             // Other Functionalities to be implemented.
         }
 
-        binding.RepoCount.setOnClickListener{
+        binding.RepoCountBox.setOnClickListener{
             doVibration()
             repositoriesBottomSheet()
             // Other Functionalities to be implemented.
         }
 
-        binding.FollowingCount.setOnClickListener{
+        binding.FollowingCountBox.setOnClickListener{
             doVibration()
             followingBottomSheet()
             // Other Functionalities to be implemented.
@@ -323,7 +341,9 @@ class MainActivity : AppCompatActivity() {
     private fun showData(userData: UserData) {
         with(binding) {
             FollowingCount.append(userData.following.toString())
+
             followerCount.append(userData.followers.toString())
+
             RepoCount.append(userData.public_repos.toString())
             bio.text = userData.bio
             username.text = userData.name
