@@ -8,16 +8,20 @@ import android.text.Editable
 import android.view.View
 import android.text.Html
 import android.text.TextWatcher
-import android.util.Log
 import android.view.KeyEvent
+import android.view.KeyEvent.KEYCODE_BACK
+import android.view.LayoutInflater
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -133,6 +137,25 @@ class HomeScreen : AppCompatActivity() {
                 textBox.visibility = View.GONE
             }
         })
+    }
+
+    override fun onBackPressed() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.exit_dialog, null)
+        val noButton = dialogView.findViewById<Button>(R.id.no)
+        val yesButton = dialogView.findViewById<Button>(R.id.yes)
+        val exitDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+        exitDialog.show()
+        exitDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        noButton.setOnClickListener{
+            exitDialog.dismiss()
+        }
+        yesButton.setOnClickListener{
+            finish()
+        }
+        exitDialog.show()
     }
 }
 
