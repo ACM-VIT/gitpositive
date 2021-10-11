@@ -32,13 +32,14 @@
             android:layout_marginBottom="16dp"
             android:text="No"
             android:textColor="@color/white"
-            app:backgroundTint="@color/git_green"
+            app:backgroundTint="#FF2626"
             app:cornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/yes"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/yes"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/yes"
@@ -46,13 +47,14 @@
             android:layout_height="wrap_content"
             android:text="Yes"
             android:textColor="@color/white"
-            app:backgroundTint="#FF2626"
+            app:backgroundTint="@color/git_green"
             app:cornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/no"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/no"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/no"
-            app:layout_constraintTop_toTopOf="@+id/no" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/no"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView2"
