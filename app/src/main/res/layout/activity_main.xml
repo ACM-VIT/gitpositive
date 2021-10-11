@@ -213,7 +213,6 @@
                         android:textColor="@color/dash_text_light"
                         android:layout_gravity="center"/>
 
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -272,6 +271,7 @@
                     android:text="@string/view_repositories"
                     android:textColor="@color/dash_text"
                     android:textAllCaps="false" />
+
             </LinearLayout>
         </LinearLayout>
 
