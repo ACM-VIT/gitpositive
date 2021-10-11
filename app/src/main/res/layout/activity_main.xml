@@ -15,7 +15,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:clickable="true"
-        app:backgroundTint="@color/card_bg"
+        app:backgroundTint="@color/dash_card"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/appName"
         app:layout_constraintEnd_toStartOf="@+id/appName"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="@+id/appName"
         app:maxImageSize="20dp"
         app:srcCompat="@drawable/ic_baseline_arrow_back_24"
-        app:tint="@color/text_color" />
+        app:tint="@color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareProfile"
@@ -33,7 +33,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:clickable="true"
-        app:backgroundTint="@color/card_bg"
+        app:backgroundTint="@color/dash_card"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/appName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="@+id/appName"
         app:maxImageSize="20dp"
         app:srcCompat="@drawable/ic_share"
-        app:tint="@color/text_color" />
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/appName"
@@ -53,7 +53,7 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_medium_ttf"
         android:text="@string/gitpositive"
-        android:textColor="#6CFF54"
+        android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +149,6 @@
                     android:layout_width="110dp"
                     android:layout_height="100dp"
                     android:id="@+id/follower_count_box"
-                    android:layout_marginStart="6dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="10dp"
@@ -272,8 +271,6 @@
                     android:text="@string/view_repositories"
                     android:textColor="@color/dash_text"
                     android:textAllCaps="false" />
-        
-
 
             </LinearLayout>
         </LinearLayout>

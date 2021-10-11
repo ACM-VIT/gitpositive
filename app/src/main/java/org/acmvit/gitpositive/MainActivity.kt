@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 
         showLoadingDialog()
         observeViewState()
-        binding.appName.text = Html.fromHtml(getColorStr("Git", "#6CFF54") + getColorStr("Positive", "#FFFFFF"))
+        binding.appName.text = Html.fromHtml(getColorStr("Git", "#6CFF54") + getColorStr("Positive", getColor(R.color.dash_text).toString()))
 
         binding.followerCountBox.setOnClickListener{
             doVibration()
