@@ -11,6 +11,8 @@ import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.KeyEvent.KEYCODE_BACK
 import android.view.LayoutInflater
+import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
@@ -65,16 +67,22 @@ class HomeScreen : AppCompatActivity() {
             }
 
         })
-        binding.floatingActionButton.setOnClickListener {
-            doVibration()
-            if (binding.username.text.toString().isNotEmpty()) {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("Username", binding.username.text?.toString())
-                startActivity(intent)
-            } else {
-                Toast.makeText(applicationContext, "Username cannot be empty!!", Toast.LENGTH_SHORT)
-                    .show()
+        binding.username.setOnKeyListener(View.OnKeyListener { view, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+//               Hide the soft keyboard
+                (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).apply {
+                    hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+                }
+                binding.username.clearFocus()
+                binding.username.isCursorVisible = false
+                startMainActivity()
+                return@OnKeyListener true
             }
+            false
+        })
+
+        binding.floatingActionButton.setOnClickListener {
+            startMainActivity()
         }
     }
 
@@ -99,7 +107,17 @@ class HomeScreen : AppCompatActivity() {
             )
         )
     }
-
+    private fun startMainActivity(){
+        doVibration()
+        if (binding.username.text.toString().isNotEmpty()) {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("Username", binding.username.text?.toString())
+            startActivity(intent)
+        } else {
+            Toast.makeText(applicationContext, "Username cannot be empty!!", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
     override fun onResume() {
         super.onResume()
         val noInternet = findViewById<ConstraintLayout>(R.id.noInternet)
