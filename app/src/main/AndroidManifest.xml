@@ -15,13 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitPositive">
         <activity
-            android:name=".repositoryList.AboutActivity"
+            android:name=".ui.about.AboutActivity"
             android:exported="true" />
         <activity
-            android:name=".HomeScreen"
+            android:name=".ui.home.HomeScreen"
             android:exported="true" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,10 +30,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".repositoryList.ui.RepositoryActivity"
+            android:name=".ui.repository.RepositoryActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true" />
 
         <meta-data

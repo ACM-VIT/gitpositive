@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/dash_bg"
     android:id="@+id/layout_dashBoard"
-    tools:context=".MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/backButton"
