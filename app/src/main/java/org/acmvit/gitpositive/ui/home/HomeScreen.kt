@@ -2,16 +2,12 @@ package org.acmvit.gitpositive.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.text.Editable
 import android.view.View
 import android.text.Html
 import android.text.TextWatcher
 import android.view.KeyEvent
-import android.view.KeyEvent.KEYCODE_BACK
 import android.view.LayoutInflater
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -23,7 +19,6 @@ import com.google.android.material.textfield.TextInputLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.ui.main.MainActivity
 import org.acmvit.gitpositive.util.NetworkConnection
@@ -102,15 +97,6 @@ class HomeScreen : AppCompatActivity() {
         }
     }
 
-    private fun doVibration() {
-        vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
-        vibrator!!.vibrate(
-            VibrationEffect.createOneShot(
-                50,
-                VibrationEffect.EFFECT_TICK
-            )
-        )
-    }
     private fun startMainActivity(){
         doVibration()
         if (binding.username.text.toString().isNotEmpty()) {

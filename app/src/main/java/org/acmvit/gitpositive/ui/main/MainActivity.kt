@@ -58,19 +58,19 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        binding.followerCount.setOnClickListener {
+        binding.followerCountBox.setOnClickListener {
             doVibration()
             followersBottomSheet()
             // Other Functionalities to be implemented.
         }
 
-        binding.RepoCount.setOnClickListener {
+        binding.RepoCountBox.setOnClickListener {
             doVibration()
             repositoriesBottomSheet()
             // Other Functionalities to be implemented.
         }
 
-        binding.FollowingCount.setOnClickListener {
+        binding.FollowingCountBox.setOnClickListener {
             doVibration()
             followingBottomSheet()
             // Other Functionalities to be implemented.
