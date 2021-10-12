@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_dashBoard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dash_bg"
-    android:id="@+id/layout_dashBoard"
+    android:background="@color/bg_color"
     tools:context=".ui.main.MainActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -15,7 +15,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:clickable="true"
-        app:backgroundTint="@color/dash_card"
+        app:backgroundTint="@color/fab_bg"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/appName"
         app:layout_constraintEnd_toStartOf="@+id/appName"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="@+id/appName"
         app:maxImageSize="20dp"
         app:srcCompat="@drawable/ic_baseline_arrow_back_24"
-        app:tint="@color/white" />
+        app:tint="#ffffff" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareProfile"
@@ -33,7 +33,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:clickable="true"
-        app:backgroundTint="@color/dash_card"
+        app:backgroundTint="@color/fab_bg"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/appName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="@+id/appName"
         app:maxImageSize="20dp"
         app:srcCompat="@drawable/ic_share"
-        app:tint="@color/white" />
+        app:tint="#ffffff" />
 
     <TextView
         android:id="@+id/appName"
@@ -61,12 +61,12 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appName"
-        android:layout_height="0dp">
+        app:layout_constraintTop_toBottomOf="@+id/appName">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -111,7 +111,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_bold_ttf"
                     android:text="@string/master_yoda"
-                    android:textColor="@color/dash_text"
+                    android:textColor="@color/text_color"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
                     android:text="@string/bio"
-                    android:textColor="@color/dash_text"
+                    android:textColor="@color/text_color_light"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -146,107 +146,107 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/follower_count_box"
                     android:layout_width="110dp"
                     android:layout_height="100dp"
-                    android:id="@+id/follower_count_box"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:textAllCaps="false"
                     android:background="@drawable/border"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp"
 
-                    android:orientation="vertical">
+                    android:textAllCaps="false">
 
                     <TextView
+                        android:id="@+id/follower_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
                         android:fontFamily="@font/poppins_medium_ttf"
                         android:text=""
-                        android:layout_marginTop="12dp"
                         android:textColor="@color/red_follow"
-                        android:id="@+id/follower_count"
-                        android:textSize="22sp"
-                        android:layout_gravity="center"/>
+                        android:textSize="22sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:fontFamily="@font/poppins_medium_ttf"
                         android:text="@string/followers_n"
-                        android:textSize="12sp"
                         android:textColor="@color/dash_text_light"
-                        android:layout_gravity="center"/>
+                        android:textSize="12sp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/RepoCountBox"
                     android:layout_width="110dp"
                     android:layout_height="100dp"
-                    android:id="@+id/RepoCountBox"
                     android:layout_marginStart="6dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:textAllCaps="false"
                     android:background="@drawable/border"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp"
 
-                    android:orientation="vertical">
+                    android:textAllCaps="false">
 
                     <TextView
+                        android:id="@+id/RepoCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/RepoCount"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
                         android:fontFamily="@font/poppins_medium_ttf"
                         android:text=""
-                        android:layout_marginTop="12dp"
                         android:textColor="@color/git_green"
-                        android:textSize="22sp"
-                        android:layout_gravity="center"/>
+                        android:textSize="22sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:fontFamily="@font/poppins_medium_ttf"
                         android:text="@string/repositories_n"
-                        android:textSize="12sp"
                         android:textColor="@color/dash_text_light"
-                        android:layout_gravity="center"/>
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/Following_Count_Box"
                     android:layout_width="110dp"
                     android:layout_height="100dp"
-                    android:id="@+id/Following_Count_Box"
                     android:layout_marginStart="6dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:textAllCaps="false"
                     android:background="@drawable/border"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp"
 
-                    android:orientation="vertical">
+                    android:textAllCaps="false">
 
                     <TextView
+                        android:id="@+id/Following_Count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/Following_Count"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
                         android:fontFamily="@font/poppins_medium_ttf"
                         android:text=""
-                        android:layout_marginTop="12dp"
                         android:textColor="@color/purple_follow"
-                        android:textSize="22sp"
-                        android:layout_gravity="center"/>
+                        android:textSize="22sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:fontFamily="@font/poppins_medium_ttf"
                         android:text="@string/following_n"
-                        android:textSize="12sp"
                         android:textColor="@color/dash_text_light"
-                        android:layout_gravity="center"/>
+                        android:textSize="12sp" />
 
 
                 </LinearLayout>
@@ -269,8 +269,8 @@
                     android:background="@drawable/border"
                     android:fontFamily="@font/poppins_medium_ttf"
                     android:text="@string/view_repositories"
-                    android:textColor="@color/dash_text"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_color" />
 
             </LinearLayout>
         </LinearLayout>
