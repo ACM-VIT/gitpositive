@@ -8,13 +8,20 @@ import android.text.Editable
 import android.view.View
 import android.text.Html
 import android.text.TextWatcher
+import android.view.KeyEvent
+import android.view.KeyEvent.KEYCODE_BACK
+import android.view.LayoutInflater
+import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,16 +71,22 @@ class HomeScreen : AppCompatActivity() {
             }
 
         })
-        binding.floatingActionButton.setOnClickListener {
-            this.doVibration()
-            if (binding.username.text.toString().isNotEmpty()) {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("Username", binding.username.text?.toString())
-                startActivity(intent)
-            } else {
-                Toast.makeText(applicationContext, "Username cannot be empty!!", Toast.LENGTH_SHORT)
-                    .show()
+        binding.username.setOnKeyListener(View.OnKeyListener { view, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+//               Hide the soft keyboard
+                (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).apply {
+                    hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+                }
+                binding.username.clearFocus()
+                binding.username.isCursorVisible = false
+                startMainActivity()
+                return@OnKeyListener true
             }
+            false
+        })
+
+        binding.floatingActionButton.setOnClickListener {
+            startMainActivity()
         }
     }
 
@@ -89,6 +102,26 @@ class HomeScreen : AppCompatActivity() {
         }
     }
 
+    private fun doVibration() {
+        vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
+        vibrator!!.vibrate(
+            VibrationEffect.createOneShot(
+                50,
+                VibrationEffect.EFFECT_TICK
+            )
+        )
+    }
+    private fun startMainActivity(){
+        doVibration()
+        if (binding.username.text.toString().isNotEmpty()) {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("Username", binding.username.text?.toString())
+            startActivity(intent)
+        } else {
+            Toast.makeText(applicationContext, "Username cannot be empty!!", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
     override fun onResume() {
         super.onResume()
         val noInternet = findViewById<ConstraintLayout>(R.id.noInternet)
@@ -108,5 +141,24 @@ class HomeScreen : AppCompatActivity() {
                 textBox.visibility = View.GONE
             }
         })
+    }
+
+    override fun onBackPressed() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.exit_dialog, null)
+        val noButton = dialogView.findViewById<Button>(R.id.no)
+        val yesButton = dialogView.findViewById<Button>(R.id.yes)
+        val exitDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+        exitDialog.show()
+        exitDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        noButton.setOnClickListener{
+            exitDialog.dismiss()
+        }
+        yesButton.setOnClickListener{
+            finish()
+        }
+        exitDialog.show()
     }
 }
