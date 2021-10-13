@@ -14,6 +14,7 @@ interface ApiInterface {
     @GET("users/{username}/repos")
     suspend fun getReposForUser(
         @Path("username") username: String?,
-        @Query("per_page") perPage: Int = 100
+        @Query("per_page") perPage: Int = 30,
+        @Query("page") page:Int=1,
     ): RepositoryResponse
 }
