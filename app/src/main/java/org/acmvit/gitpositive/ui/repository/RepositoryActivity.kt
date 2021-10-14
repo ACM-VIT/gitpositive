@@ -13,6 +13,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -28,21 +29,25 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.ui.about.AboutActivity
 import org.acmvit.gitpositive.remote.model.RepositoryResponseItem
+import org.acmvit.gitpositive.ui.repository.RepositoryViewModel.Companion.PAGE_SIZE
 
 
 @AndroidEntryPoint
 class RepositoryActivity : AppCompatActivity() {
 
     private lateinit var viewModel: RepositoryViewModel
+
+    private var username: String? = null
     var vibrator: Vibrator? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(RepositoryViewModel::class.java)
-        val username = intent.getStringExtra("Username")
+        username = intent.getStringExtra("Username")
         viewModel.getUserRepositories(username)
 
         setContent {
@@ -55,18 +60,21 @@ class RepositoryActivity : AppCompatActivity() {
 
         }
     }
+
     private fun loadRepoInWeb(url: String) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browserIntent)
     }
 
-    fun back(){
+    fun back() {
         onBackPressed()
     }
-    fun info(){
+
+    fun info() {
         val intent = Intent(this, AboutActivity::class.java)
         startActivity(intent)
     }
+
     @Composable
     fun RepositoryListScreen(viewModel: RepositoryViewModel, onItemClick: (String) -> Unit) {
         val list by remember {
@@ -74,12 +82,48 @@ class RepositoryActivity : AppCompatActivity() {
         }
         Surface(color = if (isSystemInDarkTheme()) Color(0xFF212121) else Color(0xffffffff)) {
             LazyColumn {
-                items(list) { item ->
+                itemsIndexed(list) { index, item ->
+                    viewModel.onChangeRepoScrollPosition(index)
+                    if ((index + 1) >= (viewModel.page.value * PAGE_SIZE) && !viewModel.loading.value) {
+                        viewModel.nextPage(username = username)
+                    }
+
                     SingleRepoItem(item) { onItemClick(it) }
                 }
+                item {
+                    CircularIndeterminateProgressBar(
+                        isDisplayed = viewModel.loadingMoreItem.value,
+                        verticalBias = 0.0f
+                    )
+
+                }
             }
+
         }
     }
+
+    private @Composable
+    fun CircularIndeterminateProgressBar(isDisplayed: Boolean, verticalBias: Float) {
+        if (isDisplayed) {
+            ConstraintLayout(
+                modifier = Modifier.fillMaxSize(),
+            ) {
+                val (progressBar) = createRefs()
+                val topBias = createGuidelineFromTop(verticalBias)
+                CircularProgressIndicator(
+                    modifier = Modifier.constrainAs(progressBar)
+                    {
+                        top.linkTo(topBias)
+                        end.linkTo(parent.end)
+                        start.linkTo(parent.start)
+                    },
+                    color = MaterialTheme.colors.primary
+                )
+            }
+
+        }
+    }
+
     @Composable
     fun pageTitle() {
         Surface(color = if (isSystemInDarkTheme()) Color(0xFF212121) else Color(0xffffffff)) {
@@ -96,9 +140,14 @@ class RepositoryActivity : AppCompatActivity() {
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    FloatingActionButton(onClick = { back() },
-                        backgroundColor = if (isSystemInDarkTheme()) Color(0xFF313131) else Color(0xFFE6E6E6),
-                        contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
+                    FloatingActionButton(
+                        onClick = { back() },
+                        backgroundColor = if (isSystemInDarkTheme()) Color(0xFF313131) else Color(
+                            0xFFE6E6E6
+                        ),
+                        contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(
+                            0xFF1C1C1C
+                        ),
                         modifier = Modifier
                             .width(40.dp)
                             .height(40.dp)
@@ -128,16 +177,23 @@ class RepositoryActivity : AppCompatActivity() {
                                 .wrapContentHeight(),
                             text = "Repositories",
                             style = TextStyle(
-                                color = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
+                                color = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(
+                                    0xFF1C1C1C
+                                ),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 24.sp
                             )
                         )
                     }
                     Spacer(modifier = Modifier.width(10.dp))
-                    FloatingActionButton(onClick = { info() },
-                        backgroundColor = if (isSystemInDarkTheme()) Color(0xFF313131) else Color(0xFFE6E6E6),
-                        contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(0xFF1C1C1C),
+                    FloatingActionButton(
+                        onClick = { info() },
+                        backgroundColor = if (isSystemInDarkTheme()) Color(0xFF313131) else Color(
+                            0xFFE6E6E6
+                        ),
+                        contentColor = if (isSystemInDarkTheme()) Color(0xFFE6E6E6) else Color(
+                            0xFF1C1C1C
+                        ),
                         modifier = Modifier
                             .width(40.dp)
                             .height(40.dp)
@@ -151,6 +207,7 @@ class RepositoryActivity : AppCompatActivity() {
         }
 
     }
+
     @Composable
     fun SingleRepoItem(
         item: RepositoryResponseItem,
