@@ -33,18 +33,26 @@ class RepositoryAdapter(private val dataSet: MutableList<Repository>) :
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.name.text = dataSet.elementAt(position).name
-        viewHolder.description.text = dataSet.elementAt(position).description
-        if(dataSet[position].stars==null){
+        if(dataSet.elementAt(position).description == "null"){
+            viewHolder.description.visibility = View.GONE
+        } else {
+            viewHolder.description.text = dataSet.elementAt(position).description
+        }
+        if(dataSet.elementAt(position).stars==null){
             viewHolder.stars.text = "0"
         } else {
             viewHolder.stars.text = dataSet.elementAt(position).stars.toString()
         }
-        if(dataSet[position].forks_count==null){
+        if(dataSet.elementAt(position).forks_count==null){
             viewHolder.forks.text = "0"
         } else {
             viewHolder.forks.text = dataSet.elementAt(position).forks_count.toString()
         }
-        viewHolder.language.text = dataSet.elementAt(position).language
+        if(dataSet.elementAt(position).language == "null"){
+            viewHolder.language.visibility = View.GONE
+        } else {
+            viewHolder.language.text = dataSet.elementAt(position).language
+        }
 
         viewHolder.share.setOnClickListener{
             val message = "Hey!! I found an amazing repository - '" + dataSet.elementAt(position).name +
