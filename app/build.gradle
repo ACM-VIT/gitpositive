@@ -99,4 +99,7 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     // Volley Library
     implementation("com.android.volley:volley:1.2.1")
+
+    //Paging 3.0
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha14'
 }

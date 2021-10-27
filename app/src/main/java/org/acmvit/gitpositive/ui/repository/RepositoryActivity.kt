@@ -3,7 +3,6 @@ package org.acmvit.gitpositive.ui.repository
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,16 +11,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,12 +24,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import dagger.hilt.android.AndroidEntryPoint
 import org.acmvit.gitpositive.ui.about.AboutActivity
 import org.acmvit.gitpositive.remote.model.RepositoryResponseItem
-import org.acmvit.gitpositive.ui.repository.RepositoryViewModel.Companion.PAGE_SIZE
 
 
 @AndroidEntryPoint
@@ -48,7 +44,6 @@ class RepositoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(RepositoryViewModel::class.java)
         username = intent.getStringExtra("Username")
-        viewModel.getUserRepositories(username)
 
         setContent {
             Column() {
@@ -77,50 +72,46 @@ class RepositoryActivity : AppCompatActivity() {
 
     @Composable
     fun RepositoryListScreen(viewModel: RepositoryViewModel, onItemClick: (String) -> Unit) {
-        val list by remember {
-            viewModel.repoList
-        }
+        val list = viewModel.reposFlow(username ?: "").collectAsLazyPagingItems()
+
         Surface(color = if (isSystemInDarkTheme()) Color(0xFF212121) else Color(0xffffffff)) {
             LazyColumn {
-                itemsIndexed(list) { index, item ->
-                    viewModel.onChangeRepoScrollPosition(index)
-                    if ((index + 1) >= (viewModel.page.value * PAGE_SIZE) && !viewModel.loading.value) {
-                        viewModel.nextPage(username = username)
+                items(list) { item ->
+                    item?.let {
+                        SingleRepoItem(item) { onItemClick(it) }
                     }
-
-                    SingleRepoItem(item) { onItemClick(it) }
                 }
-                item {
-                    CircularIndeterminateProgressBar(
-                        isDisplayed = viewModel.loadingMoreItem.value,
-                        verticalBias = 0.0f
-                    )
-
+                list.apply {
+                    when {
+                        loadState.refresh is LoadState.Loading -> {
+                            item {
+                                CircularIndeterminateProgressBar(Modifier.fillParentMaxSize())
+                            }
+                        }
+                        loadState.append is LoadState.Loading -> {
+                            item { CircularIndeterminateProgressBar(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp)
+                                    .wrapContentWidth(Alignment.CenterHorizontally)
+                            ) }
+                        }
+                    }
                 }
             }
-
         }
     }
 
-    private @Composable
-    fun CircularIndeterminateProgressBar(isDisplayed: Boolean, verticalBias: Float) {
-        if (isDisplayed) {
-            ConstraintLayout(
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                val (progressBar) = createRefs()
-                val topBias = createGuidelineFromTop(verticalBias)
-                CircularProgressIndicator(
-                    modifier = Modifier.constrainAs(progressBar)
-                    {
-                        top.linkTo(topBias)
-                        end.linkTo(parent.end)
-                        start.linkTo(parent.start)
-                    },
-                    color = MaterialTheme.colors.primary
-                )
-            }
-
+    @Composable
+    fun CircularIndeterminateProgressBar(
+        modifier: Modifier = Modifier
+    ) {
+        Column(
+            modifier = modifier,
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CircularProgressIndicator()
         }
     }
 
